@@ -13,7 +13,7 @@ pipeline {
     }
     post {
         always {
-            mail to: 'pwcukvwoujixgrsuqf@twzhhq.online'
+            mail to: 'pwcukvwoujixgrsuqf@twzhhq.online',
                 subject: "Pipeline Update: ${currentBuild.fullDisplayName}",
                 body: "This build done: ${env.BUILD_URL}"
         }
