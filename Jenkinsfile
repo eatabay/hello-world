@@ -7,6 +7,7 @@ pipeline {
             description: '''Comma-separated list of system test(s) to build and run
                 during the 'Build/run System Tests' stage. Leaving this blank
                 runs all tests.'''
+    }
     stages {
         stage('Build') {
             steps {
