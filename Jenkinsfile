@@ -1,5 +1,12 @@
 pipeline {
     agent any
+    parameters {
+        string name: 'systemTestList',
+            defaultValue: '',
+            trim: true,
+            description: '''Comma-separated list of system test(s) to build and run
+                during the 'Build/run System Tests' stage. Leaving this blank
+                runs all tests.'''
     stages {
         stage('Build') {
             steps {
@@ -10,12 +17,19 @@ pipeline {
                 '''
             }
         }
+        stage('Test') {
+            steps {
+                systemTestListArg = ''
+                if (params.systemTestList) {
+                    systemTestListArg = "-DTEST_LIST=${params.systemTestList}"
+                }
+                echo "call buildRunSystemTests.cmd ${systemTestListArg}"
+            }
+        }
     }
     post {
         always {
-            mail to: 'pwcukvwoujixgrsuqf@twzhhq.online',
-                subject: "Pipeline Update: ${currentBuild.fullDisplayName}",
-                body: "This build done: ${env.BUILD_URL}"
+            echo "This build done: ${env.BUILD_URL}"
         }
         success {
             echo 'This will run only if successful'
