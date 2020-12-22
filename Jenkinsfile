@@ -20,9 +20,11 @@ pipeline {
         }
         stage('Test') {
             steps {
-                systemTestListArg = ''
-                if (params.systemTestList) {
-                    systemTestListArg = "-DTEST_LIST=${params.systemTestList}"
+                script {
+                    systemTestListArg = ''
+                    if (params.systemTestList) {
+                        systemTestListArg = "-DTEST_LIST=${params.systemTestList}"
+                    }
                 }
                 echo "call buildRunSystemTests.cmd ${systemTestListArg}"
             }
