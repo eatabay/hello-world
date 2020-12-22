@@ -4,9 +4,10 @@ pipeline {
         string name: 'systemTestList',
             defaultValue: '',
             trim: true,
-            description: '''Comma-separated list of system test(s) to build and run
-                during the 'Build/run System Tests' stage. Leaving this blank
-                runs all tests.'''
+            description: 'Comma-separated list of system test(s) to build and run
+                during the "Build/run System Tests" stage; no whitespace.
+                E.g.: "testA,testB,testC,..."
+                Leave this blank to run all the tests.'
     }
     stages {
         stage('Build') {
