@@ -4,10 +4,10 @@ pipeline {
         string name: 'systemTestList',
             defaultValue: '',
             trim: true,
-            description: '''Comma-separated list of system test(s) to build and run
+            description: Comma-separated list of system test(s) to build and run
                 during the "Build/run System Tests" stage; no whitespace.<br>
                 E.g.: "testA,testB,testC,..."<br>
-                Leave this blank to run all the tests.'''
+                Leave this blank to run all the tests.
     }
     stages {
         stage('Build') {
@@ -24,7 +24,7 @@ pipeline {
                 script {
                     systemTestListArg = ''
                     if (params.systemTestList) {
-                        systemTestListArg = "-DTEST_LIST=${params.systemTestList}"
+                        systemTestListArg = "-DTEST_LIST=${params.systemTestList.replaceAll('\\s','')}"
                     }
                 }
                 echo "call buildRunSystemTests.cmd ${systemTestListArg}"
