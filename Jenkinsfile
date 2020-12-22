@@ -4,10 +4,9 @@ pipeline {
         string name: 'systemTestList',
             defaultValue: '',
             trim: true,
-            description: '''<div>Comma-separated list of system tests to build and run
-                during the 'Build/run System Tests' stage.<br>
-                Leave this blank to run all the tests.<br>
-                </div>'''
+            description: 'Comma-separated list of system tests to build and run ' +
+                'during the "Build/run System Tests" stage.\n' +
+                'Leave this blank to run all the tests.'
     }
     stages {
         stage('Build') {
